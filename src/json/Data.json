@@ -1,0 +1,25 @@
+[
+  
+        {
+            "name":"The Immortalists",
+            "image": "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/img/img_theImmortalists.png?raw=true",
+            "author":"chloe Benjamin",
+            "comment":"If you were told the date of your death,how would it shape your...",
+            "progress":"50% completed"
+        },
+        {
+            "name":"Girst Mill Road",
+            "image": "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/img/img_gristmillroad.png?raw=true",
+            "author":"Christopher J.",
+            "comment":"Twenty-six years ago Hannah had her eye shot out.Now she wants..."
+        },
+        {
+            "name":"Street Art Activity Book",
+            "image" :"https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/img/img_streetartactivitybook.png?raw=true",
+            "author":"Mitchell Beazley",
+            "comment":"Street art is colorful, vibrant,diverse and exciting. Now, you can...",
+            "progress":"50% completed"
+        }
+    
+    
+    ]
