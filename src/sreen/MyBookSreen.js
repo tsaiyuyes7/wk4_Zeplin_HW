@@ -1,10 +1,24 @@
 import React from "react";
-import {View, Text, Image, ScrollView, StyleSheet} from "react-native"
+import {View, Text, Image, ScrollView, StyleSheet,TouchableOpacity} from "react-native"
 
 import Data from "../json/Data.json"
 
+ let state = false;
+
+function changestate () {
+  return(
+    state = true
+  );
+
+}
+  
 
 const  MyBookScreen = ({navigation}) => {
+  
+  let buttonimg = <Image
+      style={ {width:82,height:21} }
+      source={ {uri:"https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/untouch/btn_start%20read.png?raw=true"} }
+    />;
   return (
     <ScrollView >
       <View style = {styles.cardSevtionStyle}>
@@ -44,7 +58,11 @@ const  MyBookScreen = ({navigation}) => {
               <Text style = {styles.bookcomment}>{Data[1].comment}</Text>
               <View style = {styles.discompletestyle}>
               </View>
-            <Text style = {styles.bookcomment}>{Data[0].progress}</Text>
+              <TouchableOpacity
+                onpress = {(state)}>
+                  <Image style={{width:82,height:21, marginTop:6}} source={{uri:"https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/touch/btn_start%20read%20pressed.png?raw=true"}}/>
+                  
+              </TouchableOpacity>
         </View>
       </View> 
 
