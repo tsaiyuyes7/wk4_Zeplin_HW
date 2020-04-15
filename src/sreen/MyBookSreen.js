@@ -3,13 +3,18 @@ import {View, Text, Image, ScrollView, StyleSheet,TouchableOpacity} from "react-
 
 import Data from "../json/Data.json"
 
- let state = false;
+ let state = "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/untouch/btn_start%20read.png?raw=true";
 
 function changestate () {
   return(
     state = true
   );
 
+}
+function chageuri () {
+  return(
+    state = "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/touch/btn_start%20read%20pressed.png?raw=true"
+  )
 }
   
 
@@ -59,8 +64,8 @@ const  MyBookScreen = ({navigation}) => {
               <View style = {styles.discompletestyle}>
               </View>
               <TouchableOpacity
-                onpress = {(state)}>
-                  <Image style={{width:82,height:21, marginTop:6}} source={{uri:"https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/touch/btn_start%20read%20pressed.png?raw=true"}}/>
+                onpress = {()=> chageuri} >
+                  <Image style={{width:82,height:21, marginTop:6}} source={{uri:state}}/>
                   
               </TouchableOpacity>
         </View>

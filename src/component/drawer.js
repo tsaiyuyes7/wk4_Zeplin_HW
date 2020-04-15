@@ -1,6 +1,7 @@
-import React from 'react';
-import { StyleSheet, Image,  Text, View} from 'react-native';
+import React from "react";
+import { StyleSheet, Image, TouchableOpacity, View, Text} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import MyBookScreen from "./MyBookSreen.js"
 import { createStackNavigator, DrawerActions } from '@react-navigation/stack';
 import {
   createDrawerNavigator,
@@ -8,12 +9,54 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
+import HomeStack from "./HomeStackScreen"
 
+const Stack = createStackNavigator();
 
-import HomeStackScreen from "./src/sreen/HomeStackScreen.js"
-import MyBookStackScreen from "./src/sreen/MyBookStackScreen.js"
-import FavoriteStackScreen from "./src/sreen/FavoriteStackScreen.js"
+function StackScreen({ navigation }) {
 
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="MyBook" component={MyBookScreen} 
+       options={{ 
+        headerRight: props => <RightTitle {...props} /> ,
+        headerLeft: () => (
+          <TouchableOpacity  
+          onPress={()=> navigation.openDrawer()}>
+                  <Image
+                  style={styles.HeaderRightLogo}
+                  source={{uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/untouch/btn_navbar_mobile.png?raw=true"}}
+                  />       
+          </TouchableOpacity>
+        ),
+        headerTintColor: '#fff',
+        headerStyle:{
+          backgroundColor:"#00b49f"
+        }
+        
+      }}  
+      />
+  </Stack.Navigator>
+  );
+}
+const Drawer = createDrawerNavigator();
+
+function RightTitle() {
+  return (
+    <Image
+      style={styles.HeaderRightLogo}
+      source={{uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/btn_search.png?raw=true"}}
+    />
+  );
+}
+function LeftTitle() {
+  return (
+    <Image
+      style={styles.HeaderRightLogo}
+      source={{uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/untouch/btn_navbar_mobile.png?raw=true"}}
+    />
+  );
+}
 
 function CustomDrawerContent(props) {
   return (
@@ -41,13 +84,9 @@ function CustomDrawerContent(props) {
   );
 }
 
-
-const Drawer = createDrawerNavigator();
-
-function App() {
+const MyBookStackScreen = ({navigation}) => {
   return (
-    <NavigationContainer>
-   <Drawer.Navigator 
+  <Drawer.Navigator 
     drawerContent={props => <CustomDrawerContent {...props} />}
     drawerContentOptions={{
       activeTintColor: '#ffffff',
@@ -57,45 +96,42 @@ function App() {
         marginLeft:0 ,marginTop :0,marginBottom:0,
         borderRadius:0,bottom:4
        },
-      labelStyle: { 
-        fontSize : 14, 
-        marginTop :2,
-        marginLeft:8}
+      labelStyle: { fontSize : 14, marginTop :2}
     }}
     initialRouteName = 'MyBook'
 
   >
     <Drawer.Screen 
         name="Hoom" 
-        component = {HomeStackScreen}
+        component = {HomeStack}
         options = {{
           drawerIcon : ({focused}) => (
            
             focused
-            ? <Image source={{uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/touch/icon_drawer_home_pressed.png?raw=true" }} style={styles.drawericonn}  />
-            : <Image source={{uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/untouch/icon_drawer_home.png?raw=true"}} style={styles.drawericonn}  /> 
+            ? <Image source={{uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/touch/icon_drawer_home_pressed.png?raw=true" }} style={{height:24,width:24 }}  />
+            : <Image source={{uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/untouch/icon_drawer_home.png?raw=true"}} style={{height:24,width:24 }}  /> 
           )
         }}
     />
 
     <Drawer.Screen 
         name="MyBook" 
-        component = {MyBookStackScreen}
+        component = {StackScreen}
         options = {{
           drawerIcon : ({focused})=> (
             focused
-            ? <Image source={{uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/touch/icon_drawer_mybook_pressed.png?raw=true" }} style={styles.drawericonn}  />
-            : <Image source={{uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/untouch/icon_drawer_mybook.png?raw=true"}} style={styles.drawericonn}  /> 
+            ? <Image source={{uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/touch/icon_drawer_mybook_pressed.png?raw=true" }} style={{height:24,width:24 }}  />
+            : <Image source={{uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/untouch/icon_drawer_mybook.png?raw=true"}} style={{height:24,width:24 }}  /> 
           )
         }}
     />
     <Drawer.Screen 
         name="Favorite" 
-        component = {FavoriteStackScreen}
+        component = {StackScreen}
         options = {{
           drawerIcon : ()=> (
             <Image
-              style={styles.drawericonn}
+              style={styles.Drawericon}
               source={{uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/untouch/icon_drawer_favorites.png?raw=true"}}
             />
           )
@@ -103,11 +139,11 @@ function App() {
     />
     <Drawer.Screen 
         name="Setting" 
-        component = {MyBookStackScreen}
+        component = {StackScreen}
         options = {{
           drawerIcon : ()=> (
             <Image
-              style={styles.drawericonn}
+              style={styles.Drawericon}
               source={{uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/untouch/icon_drawer_setting.png?raw=true"}}
             />
           )
@@ -115,26 +151,21 @@ function App() {
     />
     <Drawer.Screen 
         name="About us" 
-        component = {MyBookStackScreen}
+        component = {StackScreen}
         options = {{
           drawerIcon : ()=> (
             <Image
-              style={styles.drawericonn}
+              style={styles.Drawericon}
               source={{uri: "https://github.com/tsaiyuyes7/wk4_Zeplin_HW/blob/master/assets/icon/icon_drawer_aboutus.png?raw=true"}}
             />
           )
         }}
     />
   </Drawer.Navigator>
-    </NavigationContainer>
   );
 }
+
 const styles = StyleSheet.create({
-  drawericonn: {
-    height:24,
-    width:24,
-    marginLeft:16
-  },
   HeaderRightLogo: {
     width:40,
     height:40,
@@ -193,4 +224,6 @@ Headerarrow :{
  
 });
 
-export default App;
+
+export default MyBookStackScreen;
+
